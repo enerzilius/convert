@@ -27,7 +27,7 @@ Each requirement is declared in a `requirements.config.ts`. Requirements can hav
 
 ### Source
 
-A **source** contains a url, hash, and optional patches.
+A **source** contains a url, hash, optional patches, and optional copies.
 
 ```ts
 {
@@ -35,6 +35,9 @@ A **source** contains a url, hash, and optional patches.
   url: "https://github.com/me/my-cool-parser/archive/2eb03bd5dc18e3b7b1318190bef8e14274123778.tar.gz",
   hash: ["sha256", "3bb10d2d3cf90496ddca29b523da85a901040d707ac03751de40edd35c8d61ce"],
   patches: ["add-coolness.patch"], // optional, relative to `recipe/<name>`
+  copy: {
+    "cool-types.d.ts": "cool-types.d.ts",
+  }, // optional, relative to `recipe/<name>` and the `built/<name>` folder respectively.
 },
 ```
 
