@@ -13,9 +13,9 @@ For a semi-technical overview of this tool, check out the video: https://youtu.b
 ## Usage
 
 1. Go to [convert.to.it](https://convert.to.it/)
-2. Click the big blue box to add your file (or just drag it on to the window).
-3. An input format should have been automatically selected. If it wasn't, yikes! Try searching for it, or if it's really not there, see the "Issues" section below.
-4. Select an output format from the second list. If you're on desktop, that's the one on the right side. If you're on mobile, it'll be somewhere lower down.
+2. Click the big box to add your file (or just drag it on to the window).
+3. An input format should have been automatically selected (as shown at the top). If not, yikes! Try pressing "Show all" and searching for it, or if it's really not there, see the "Issues" section below.
+4. Press "Next" and select your output format.
 5. Click **Convert**!
 6. Hopefully, after a bit (or a lot) of thinking, the program will spit out the file you wanted. If not, see the "Issues" section below.
 
@@ -47,7 +47,7 @@ Though please note, "converting X to Y doesn't work" is **not** a bug report. Ho
 1. Clone this repository with `git clone https://github.com/p2r3/convert`.
 2. Install [Bun](https://bun.sh/).
 3. Run `bun install` to install dependencies.
-4. Run `bun run dev` to start the development server.
+4. Run `bun run dev` to prepare and start the development server.
 
 _The following steps are optional, but recommended for performance:_
 
@@ -76,6 +76,10 @@ docker compose -f docker/docker-compose.yml -f docker/docker-compose.override.ym
 ```
 
 The first Docker build is expected to be slow because Chromium and related system packages are installed in the build stage (needed for puppeteer in `buildCache.js`). Later builds are usually much faster due to Docker layer caching.
+
+### Manual
+
+Run `bun run build` and then `bun run cache:build`. Then serve the `dist/` folder on any HTTP server of your choice.
 
 ## Contributing
 
