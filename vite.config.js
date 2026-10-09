@@ -30,19 +30,19 @@ export default defineConfig({
       targets: [
         {
           src: "built/espeakng.js/js/espeakng.worker.js",
-          dest: "js",
+          dest: "external/espeakng.js/",
         },
         {
           src: "built/espeakng.js/js/espeakng.worker.data",
-          dest: "js",
+          dest: "external/espeakng.js/",
         },
         {
           src: "node_modules/pdfjs-dist/{standard_fonts,cmaps,wasm}",
-          dest: "js/pdfjs",
+          dest: "external/pdfjs/",
         },
         {
           src: "built/typst-assets/files/fonts/*",
-          dest: "wasm/typst",
+          dest: "external/typst/",
         },
       ],
     }),
