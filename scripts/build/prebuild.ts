@@ -38,10 +38,16 @@ export type PrebuildArgs = ParsedArgs<typeof prebuildArgs>;
 // with --check, failures are collected here instead of stopping the run
 type CheckReport = { passed: string[]; failed: { name: string; error: string }[] };
 
-function dockerRun(image: string, mounts: Record<string, string>, env: Record<string, string>) {
-  const args = ["run", "--rm", "--network=none", `--platform=${PLATFORM}`];
+function dockerRun(
+  image: string,
+  mounts: Record<string, string>,
+  env: Record<string, string>,
+  network: boolean = false,
+) {
+  const args = ["run", "--rm", `--platform=${PLATFORM}`];
   const uid = process.getuid?.();
   const gid = process.getgid?.();
+  if (!network) args.push("--network=none");
   if (uid !== undefined && gid !== undefined) args.push(`--user=${uid}:${gid}`);
   for (const [host, container] of Object.entries(mounts)) args.push("-v", `${host}:${container}`);
   for (const [key, value] of Object.entries({
@@ -147,6 +153,7 @@ async function build(
         [outDir]: "/out",
       },
       { OUT_DIR: "/out", REQUIREMENTS_DIR: "/requirements" },
+      requirement.allowNetwork,
     )(["sh", "-euc", `cd /build && exec sh -eu "/recipe/$1"`, "sh", requirement.prebuild]);
 
     if (!(await readdir(outDir)).length) {

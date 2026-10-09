@@ -15,6 +15,7 @@ export type AssembleRequirement = Subrecipe<{ assemble: string }>;
 export type PrebuildRequirement = Subrecipe<{
   prebuild: string;
   image: `${string}@sha256:${string}`;
+  allowNetwork?: boolean;
 }>;
 
 export type SubrecipeRequirement = AssembleRequirement | PrebuildRequirement;
