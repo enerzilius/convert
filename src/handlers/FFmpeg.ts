@@ -350,7 +350,7 @@ class FFmpegHandler implements FormatHandler {
       command.push("-b:v", "15M", "-b:a", "192k");
     } else if (outputFormat.format === "ogg-vorbis") {
       command.push("-c:a", "libvorbis");
-    } else if (outputFormat.format === "ogg-opus") {
+    } else if (outputFormat.format === "opus") {
       command.push("-c:a", "libopus");
     }
     if (args) command.push(...args);
